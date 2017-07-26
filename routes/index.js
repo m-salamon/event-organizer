@@ -12,9 +12,9 @@ router.get('/', (req, res) => {
             getParticipentsHistory().then(dataParticipentsHistory => {
                 res.render('index', {
                     pageTitle: 'Home',
-                    //participents: dataParticipents,
-                    //simchas: dataSimchas,
-                    //history: dataParticipentsHistory
+                    participents: dataParticipents,
+                    simchas: dataSimchas,
+                    history: dataParticipentsHistory
                 });
             });
         });
