@@ -1,0 +1,136 @@
+<% include header.ejs %>
+
+
+<div class="container-fixed">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="addParticipent">
+                <!-- add participent -->
+                <h2>Add A Participent</h2>
+                <form method="post" action="/addParticipent">
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="" name="name" placeholder="participent name"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="" name="sum" placeholder="sum"/>
+                    </div>    
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Ok</button>
+                    </div>    
+                </form>
+            </div>
+            <div class="addSimcha">
+                 <!-- add simcha -->
+                 <h2>Add A Simcha</h2>
+                <form method="post" action="/addSimcha">
+                <div class="form-group">
+                        <input class="form-control" type="text" value="" name="name" placeholder="simcha name"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="" name="type" placeholder="type"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="" name="amount" placeholder="sum"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" type="submit">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>  <!-- / .col-md-4 -->    
+    <div class="col-md-8">
+        <!-- give participents money to simcha -->
+        <div class="col-md-5">
+            <div class="participentMoney">
+            <h2>Participents</h2>
+                <table>
+                    <tr>
+                        <% participents.forEach(function(e){ %>
+                        <td id="<%= e.id %>" class="participentGiving">
+                        <img class="participentImage" src="/images/avator1.png"/>
+                        <p style="overflow: hidden; padding-left: 1em; margin: 0px;"><span class="name"><%= e.name %></span><br/>$<%= e.sum %> <br/>
+                        <a href="/history/<%= e.id %>"><i class="fa fa-bars" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="see history"></i></a>
+                        <a><i class="fa fa-plus editParticipentTrigger" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="add money"></i></a>
+                            <form method="post" action="/editParticipent" class="editParticipent">
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" value="<%= e.id %>" name="id"/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="" name="sum" placeholder="add money"/>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" type="submit">Ok</button>
+                            </div>
+                            </form>
+                           </td> 
+                        <% }); %>
+                    </tr>
+                </table>
+          </div>  <!-- / .participentMoney -->
+        </div> <!-- / .col-md-5 -->
+        <div class="col-md-5" >
+            <div class="simchaMoney">
+            <h2>Simchas</h2>
+                <table>
+                    <tr>
+                        <% simchas.forEach(function(e){ %>
+                        <td id="<%= e.id %>" class="simchaGiving">
+                        <img id="<%= e.type %>" class="simchaImage" src="/images/default.png"/>
+                         <p style="overflow: hidden; padding-left: 1em; margin: 0px;"><span class="name"><%= e.name %></span><br/> <%= e.type %> <br/> $<%= e.amount %>
+                         <a><i class="fa fa-plus editSimchasTrigger" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="add money"></i></a>
+                            <form method="post" action="/editSimcha" class="editSimcha">
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" value="<%= e.id %>" name="id"/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="" name="sum" placeholder="add money to simcha"/>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" type="submit">Ok</button>
+                            </div>
+                            </form>
+                        </td> 
+                        <% }); %>
+                    </tr>
+                </table>
+            </div>  <!-- / .simchaMoney -->   
+        </div> <!-- / .col-md-5 -->
+        <div class="col-md-2" style="padding: 0px;">
+          <div class="amountMoney" style="padding: 0px;">
+          <h2 style="border-bottom: 1px solid #b2b2b2; padding-bottom: 0.5em;">Amount</h2>
+          <div class="displayParticipent"></div>
+          <div class="displaySimcha"></div>
+         <tr>
+            <div  class="form-group" style="padding: 0.5em;">
+                <td><input type="number" class="form-control amount" name="amount" placeholder="amount"/></td>
+            </div>
+             <div class="form-group" style="padding: 0.5em;">
+                 <td><button class="btn btn-default" type="button" id="submitMoneyToSimcha">Submit</button></td>
+            </div>
+         </tr>
+        </div> <!-- / .amountMoney -->
+       </div> <!-- / .col-md-2 -->
+     </div> <!-- / .col-md-8 -->
+    </div> <!-- / .row -->
+</div> <!-- / .container -->
+
+
+
+        
+
+
+
+
+    
+    
+    <h1>participents</h1>
+    <% include participents.ejs %>
+
+    <h1>simchas</h1>
+    <% include simchas.ejs %>
+
+    <h1>participents-history</h1>
+    <% include participents-history.ejs %>
+
+
+<% include header.ejs %>
