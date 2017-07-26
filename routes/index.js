@@ -6,18 +6,19 @@ const getParticipentsHistory = require('../repo/participents-history');
 const knex = require('../repo/config');
 
 router.get('/', (req, res) => {
-    getParticipents().then(dataParticipents => {
-        getSimchas().then(dataSimchas => {
-            getParticipentsHistory().then(dataParticipentsHistory => {
-                res.render('index', {
-                    pageTitle: 'Home',
-                    participents: dataParticipents,
-                    simchas: dataSimchas,
-                    history: dataParticipentsHistory
-                });
-            });
-        });
-    });
+    res.json('hello world');
+    // getParticipents().then(dataParticipents => {
+    //     getSimchas().then(dataSimchas => {
+    //         getParticipentsHistory().then(dataParticipentsHistory => {
+    //             res.render('index', {
+    //                 pageTitle: 'Home',
+    //                 participents: dataParticipents,
+    //                 simchas: dataSimchas,
+    //                 history: dataParticipentsHistory
+    //             });
+    //         });
+    //     });
+    // });
 });
 
 router.post('/addParticipent', (req, res) => {
