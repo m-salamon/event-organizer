@@ -2,10 +2,10 @@ require('dotenv').config();
 const knex = require('knex')({
     client: 'mysql',
     connection: {
-        host: process.env.DB_HOST, //'localhost',
-        user: process.env.DB_USER, //'user',
-        password: process.env.DB_PASSWORD,// 'password',
-        database: process.env.DB_NAME // 'simcha-organizer'
+        host: process.env.DB_HOST_PRODUCTION, //'localhost',
+        user: process.env.DB_USER_PRODUCTION, //'user',
+        password: process.env.DB_PASSWORD_PRODUCTION,// 'password',
+        database: process.env.DB_NAME_PRODUCTION // 'simcha-organizer'
     }
 });
 
